@@ -15,7 +15,8 @@ public class StudentHandler {
 	public Mono<ServerResponse> getAllStudent(ServerRequest request) {
 		Flux<Student> students = Flux.range(1, 20).doOnNext(i -> System.out.println("Student Record : " + i))
 				.map(i -> new Student(i, "student " + i));
-
+		// uncomment below line and comment return ServerResponse line to check how exception handling works for functional endpoint.
+		//throw new RuntimeException("get student api failed.");
 		return ServerResponse.ok().body(students, Student.class);
 	}
 	
